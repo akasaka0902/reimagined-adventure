@@ -16,49 +16,7 @@ TweenService = game:GetService("TweenService")
 -- isWhitelisted = allowedUsers[LocalPlayer.Name] == true  
 isWhitelisted = true                                       -- 
 
-if not isWhitelisted then
-    local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "VoidLoadingScreen"
-    ScreenGui.IgnoreGuiInset = true
-    ScreenGui.ResetOnSpawn = false
-    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
-    ScreenGui.DisplayOrder = 9999999999
-    ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
-    
-    local Background = Instance.new("Frame")
-    Background.Size = UDim2.new(1, 0, 1, 0)
-    Background.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-    Background.BorderSizePixel = 0
-    Background.Parent = ScreenGui
 
-    local AmbientSound = Instance.new("Sound")
-    AmbientSound.SoundId = "rbxassetid://7327881289"
-    AmbientSound.Volume = 0.4
-    AmbientSound.Looped = false
-    AmbientSound.Parent = game:GetService("SoundService")
-    AmbientSound:Play()
-    TweenService:Create(AmbientSound, TweenInfo.new(2), {Volume = 0.5}):Play()
-
-    local Vignette = Instance.new("ImageLabel")
-    Vignette.Size = UDim2.new(1, 0, 1, 0)
-    Vignette.BackgroundTransparency = 1
-    Vignette.Image = "rbxassetid://121179127187306"
-    Vignette.ImageColor3 = Color3.fromRGB(0, 0, 0)
-    Vignette.ImageTransparency = 0.2
-    Vignette.ScaleType = Enum.ScaleType.Stretch
-    Vignette.Parent = Background
-
-    spawn(function()
-        for i = 1, 100 do
-            local intensity = i / 100
-            Background.BackgroundColor3 = Color3.fromRGB(
-                10 + (245 * intensity),
-                10 - (10 * intensity),
-                10 - (10 * intensity)
-            )
-            task.wait(0.1)
-        end
-    end)
 
     local GlitchFrame = Instance.new("Frame")
     GlitchFrame.Size = UDim2.new(1, 0, 1, 0)
@@ -69,6 +27,9 @@ if not isWhitelisted then
 
     spawn(function()
         for i = 1, 100 do
+
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
             GlitchFrame.BackgroundTransparency = math.random(70, 100) / 100
             GlitchFrame.Position = UDim2.new(0, math.random(-10, 10), 0, math.random(-10, 10))
             task.wait(math.random(5, 15) / 100)
